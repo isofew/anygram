@@ -1,0 +1,33 @@
+{
+  "name": "anygram",
+  "version": "0.1.2",
+  "description": "Datagram forwarding behind NAT",
+  "main": "index.js",
+  "bin": {
+    "anygram": "anygram.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "isofew@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^2.9.0",
+    "node-stun": "^0.1.0",
+    "slate-irc": "^0.9.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/isofew/anygram.git"
+  },
+  "keywords": [
+    "udp",
+    "nat",
+    "traversal"
+  ],
+  "bugs": {
+    "url": "https://github.com/isofew/anygram/issues"
+  },
+  "homepage": "https://github.com/isofew/anygram#readme"
+}
