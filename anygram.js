@@ -21,6 +21,8 @@ if (!cmd.name || !cmd.mode || !cmd.serverPort)
   cmd.help();
 
 var irc = require('./irc')(cmd);
+irc.on('error', e=>{throw Error(e)});
+
 var anygram = require('.')(cmd);
 var dgram = require('dgram');
 
@@ -29,6 +31,8 @@ if (cmd.mode === 'client') {
   anygram.connect(irc, cmd.server).then(socket => {
 
     console.log('connected');
+    irc.removeAllListeners('error');
+    irc.on('error', (e) => {});
     irc.quit('thank you!');
 
     var server = dgram.createSocket('udp4');

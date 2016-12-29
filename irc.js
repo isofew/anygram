@@ -19,9 +19,8 @@ module.exports = (e) => {
     client.stream.write('PING :KeepAlive\n');
   }, e.keepalive || 15000);
 
-  e.onend = e.onend || (() => {throw Error('irc connection ended')});
-  client.stream.on('end', e.onend);
-  client.stream.on('error', e.onend);
+  client.stream.on('end', () => client.emit('error', 'IRC connection ended'));
+  client.stream.on('error', (err) => client.emit('error', err));
 
   client.config = e;
   return client;
