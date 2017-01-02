@@ -15,10 +15,21 @@ cmd
   .option('-s, --server <value>', 'nickname of server (client only)')
   .option('-p, --clientPort <n>', 'the port client listening on (client only)')
   .option('-P, --serverPort <n>', 'the port server forwarding to')
+  .option('--postup <value>', 'postup script')
   .parse(process.argv);
 
 if (!cmd.name || !cmd.mode || !cmd.serverPort)
   cmd.help();
+
+var cp = require('child_process');
+var onexit = require('exit-hook');
+var run = (script) => {
+  if (!script) return;
+  script = cp.exec(script);
+  onexit(() => {
+    script.kill();
+  });
+};
 
 var irc = require('./irc')(cmd);
 irc.on('error', e=>{throw Error(e)});
@@ -41,6 +52,8 @@ if (cmd.mode === 'client') {
     server.on('message', (msg, l) => anygram.send(socket, msg, l.port, cmd.serverPort));
     anygram.onrecv(socket, (msg, lport) => server.send(msg, lport, '127.0.0.1'));
 
+    run(cmd.postup);
+
   }).catch(e=>{throw Error(e)});
 }
 else if (cmd.mode === 'server') {
@@ -56,6 +69,8 @@ else if (cmd.mode === 'server') {
     });
 
   });
+
+  run(cmd.postup);
 }
 else {
   cmd.help();

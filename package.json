@@ -1,6 +1,6 @@
 {
   "name": "anygram",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "description": "Datagram forwarding behind NAT",
   "main": "index.js",
   "bin": {
@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "commander": "^2.9.0",
+    "exit-hook": "^1.1.1",
     "node-stun": "^0.1.0",
     "slate-irc": "^0.9.0"
   },
