@@ -4,7 +4,7 @@ var cmd = require('commander');
 
 cmd
   .version(require('./package').version)
-  .option('--host <value>', 'IRC Host (default: asimov.freenode.net)')
+  .option('--host <value>', 'IRC Host (default: irc.freenode.net)')
   .option('--port <value>', 'IRC Port (default: 6667)')
   .option('-n, --name <value>', 'IRC Nickname')
   .option('--pass <value>', 'IRC Password (if any)')
