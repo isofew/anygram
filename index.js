@@ -39,8 +39,10 @@ module.exports = (config) => {
   exports.createServer = (irc, onconn, onerr) => {
     onerr = onerr || console.error;
     irc.on('message', e => {
-      var rinfo = JSON.parse(e.message);
-      exports.connect(irc, e.from, rinfo).then(onconn).catch(onerr);
+      try {
+        var rinfo = JSON.parse(e.message);
+        exports.connect(irc, e.from, rinfo).then(onconn).catch(onerr);
+      } catch (e) {}
     });
   };
 
