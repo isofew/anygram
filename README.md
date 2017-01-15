@@ -21,8 +21,7 @@ anygram -n [serverNick] -m server -P [serverPort]
 
 #### Client
 ```bash
-anygram -n [clientNick] -m client -s [serverNick] -p [clientPort] -P 
-[serverPort]
+anygram -n [clientNick] -m client -s [serverNick] -p [clientPort] -P [serverPort]
 ```
 
 The commands above will forward packets to 127.0.0.1:`clientPort`@client 
@@ -38,7 +37,7 @@ To run the commands forever, consider using
 var anygram = require('anygram')(config);
 ```
 
-The config options is also listed in `anygram --help`
+`config` uses the same command line options.
 
 In AnyGram, all sockets are UDP sockets.
 
